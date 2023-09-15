@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
     color: "white",
     textAlign: "center",
-    fontSize: 34,
+    fontSize: 52,
     fontFamily: "RadicalFortuneDemoRegular-ZV1Jl",
     textShadowColor: "#c1c1c4",
     textShadowRadius: 12,

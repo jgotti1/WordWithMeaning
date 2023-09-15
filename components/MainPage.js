@@ -9,11 +9,8 @@ import WordForm from "./WordForm";
 // import * as SplashScreen from "expo-splash-screen";
 
 export default function Main() {
-  const apiURL = process.env.EXPO_PUBLIC_API_URL;
-  const apiKEY = process.env.EXPO_PUBLIC_API_KEY;
+
   const version = Constants.expoConfig.version;
-  
-  console.log(apiURL, apiKEY, version);
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="auto" />
@@ -29,7 +26,7 @@ export default function Main() {
         </View>
         {/* section end */}
         <View>
-          <Text style={styles.title}>WORDS WITH MEANING</Text>
+          <Text style={styles.title}>WORD MANIA</Text>
         </View>
         <WordForm/>
       </ImageBackground>
