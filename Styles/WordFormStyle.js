@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
     marginLeft: 55,
     marginRight: 55,
+    marginBottom: 20,
   },
   searchWord: {
     color: "white",
@@ -14,6 +15,14 @@ const styles = StyleSheet.create({
     fontFamily: "RadicalFortuneDemoRegular-ZV1Jl",
     textShadowColor: "#d8d8e0",
     textShadowRadius: 3,
+    lineHeight: 22,
+  },
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
   },
 });
 

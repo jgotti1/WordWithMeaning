@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect, useCallback } from "react";
 import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { View, Text } from "react-native";
+import { View} from "react-native";
 import Main from "./components/MainPage";
 
 SplashScreen.preventAutoHideAsync();
@@ -46,7 +46,7 @@ export default function App() {
 
   //Render you components here
   return (
-    <View style={{ flex: 1}} onLayout={onLayoutRootView}>
+    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <Main />
     </View>
   );

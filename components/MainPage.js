@@ -4,14 +4,12 @@ import styles from "../Styles/main";
 import clouds from "../assets/images/clouds.jpeg";
 import Constants from "expo-constants";
 import WordForm from "./WordForm";
-import Contect from "../components/Content"
-import Content from "../components/Content";
+import Reset from "../components/Reset";
 // import { useState, useEffect, useCallback } from "react";
 // import * as Font from "expo-font";
 // import * as SplashScreen from "expo-splash-screen";
 
 export default function Main() {
-
   const version = Constants.expoConfig.version;
   return (
     <SafeAreaView style={styles.container}>
@@ -30,6 +28,7 @@ export default function Main() {
           <Text style={styles.title}>WORD SEARCH MANIA</Text>
         </View>
         <WordForm />
+        <Reset />
       </ImageBackground>
     </SafeAreaView>
   );

@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 36,
     fontFamily: "RadicalFortuneDemoRegular-ZV1Jl",
+    lineHeight: 38,
     textShadowColor: "#c1c1c4",
     textShadowRadius: 12,
   },

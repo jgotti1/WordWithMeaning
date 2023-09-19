@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Alert, ScrollView } from "react-native";
 import { Searchbar } from "react-native-paper";
 import styles from "../Styles/WordFormStyle";
 import Content from "../components/Content";
@@ -16,31 +16,46 @@ function WordForm() {
     },
   };
 
+  const [definitions, setDefinitions] = useState([]);
   const [hideSearch, setHideSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const onChangeSearch = (query) => {
     setSearchQuery(query);
   };
-  const [definitions, setDefinitions] = useState([]);
 
   const handleSubmit = async () => {
-    setHideSearch(true);
-    const definitions = `${apiURL}/${searchQuery}/definitions`;
+    const definitionsURL = `${apiURL}/${searchQuery}/definitions`;
+    const responseDefinitions = await fetch(definitionsURL, options);
+    const resultDefinitions = await responseDefinitions.json();
+    console.log(resultDefinitions.definitions);
+
+    if (resultDefinitions.message === "word not found" && !hideSearch) {
+      console.log("ERROR x" + definitions);
+      setHideSearch(false);
+      Alert.alert(`The word searched ${searchQuery} does not exist, please try again`);
+      setSearchQuery("");
+    } else {
+      setDefinitions(resultDefinitions.definitions);
+      setHideSearch(true);
+      console.log("hey");
+    }
+    console.log(definitions);
+    // const definitions = `${apiURL}/${searchQuery}/definitions`;
     const synonyms = `${apiURL}/${searchQuery}/synonyms`;
     const examples = `${apiURL}/${searchQuery}/examples`;
     const pronunciation = `${apiURL}/${searchQuery}/pronunciation`;
 
-    const responseDefinitions = await fetch(definitions, options);
+    // const responseDefinitions = await fetch(definitions, options);
     const responseSynonyms = await fetch(synonyms, options);
     const responseExamples = await fetch(examples, options);
     const responsePronunciation = await fetch(pronunciation, options);
 
-    const resultDefinitions = await responseDefinitions.json();
+    // const resultDefinitions = await responseDefinitions.json();
     const resultSynonyms = await responseSynonyms.json();
     const resultExamples = await responseExamples.json();
     const resultPronunciation = await responsePronunciation.json();
 
-    setDefinitions(resultDefinitions.definitions);
+    // setDefinitions(resultDefinitions.definitions);
 
     // console.log("Prounciation " + resultPronunciation.pronunciation.all);
 
@@ -58,13 +73,26 @@ function WordForm() {
     // setSearchQuery("");
   };
   return (
-    <View>
+    <ScrollView contentContainerStyle={styles.scrollViewContent}>
+    <View style={styles.container}>
       <View style={styles.inputContainer}>
-        {!hideSearch && <Searchbar placeholder="Search" onChangeText={onChangeSearch} value={searchQuery} onSubmitEditing={handleSubmit} selectionColor={"blue"} />}
+        {!hideSearch && (
+          <Searchbar
+            placeholder="Search"
+            onChangeText={onChangeSearch}
+            value={searchQuery}
+            onSubmitEditing={handleSubmit}
+            selectionColor={"blue"}
+            autoCorrect={false}
+            spellCheck={false}
+          />
+        )}
         {hideSearch && <Text style={styles.searchWord}>You searched {searchQuery} ... </Text>}
       </View>
-      {definitions.length > 0 && <Content data={definitions} dataType={"definition"} title={"Definitions"} />}
+      {hideSearch && <Content data={definitions} dataType={"definition"} title={"Definition(s)"} />}
+      {hideSearch && <Content data={definitions} dataType={"definition"} title={"Definition(s)"} />}
     </View>
+     </ScrollView>
   );
 }
 
