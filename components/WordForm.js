@@ -15,7 +15,7 @@ function WordForm() {
       "X-RapidAPI-Host": apiHOST,
     },
   };
-  
+
   const [hideSearch, setHideSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const onChangeSearch = (query) => {
@@ -24,7 +24,7 @@ function WordForm() {
   const [definitions, setDefinitions] = useState([]);
 
   const handleSubmit = async () => {
-    setHideSearch(true)
+    setHideSearch(true);
     const definitions = `${apiURL}/${searchQuery}/definitions`;
     const synonyms = `${apiURL}/${searchQuery}/synonyms`;
     const examples = `${apiURL}/${searchQuery}/examples`;
@@ -63,7 +63,7 @@ function WordForm() {
         {!hideSearch && <Searchbar placeholder="Search" onChangeText={onChangeSearch} value={searchQuery} onSubmitEditing={handleSubmit} selectionColor={"blue"} />}
         {hideSearch && <Text style={styles.searchWord}>You searched {searchQuery} ... </Text>}
       </View>
-      {definitions.length > 0 && <Content data={definitions} titleText={"Definition:"} title={"Definitions"} />}
+      {definitions.length > 0 && <Content data={definitions} dataType={"definition"} title={"Definitions"} />}
     </View>
   );
 }

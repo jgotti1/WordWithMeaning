@@ -1,20 +1,20 @@
-import React from "react";
+import { useState } from "react";
 import { View, StyleSheet, Text, FlatList } from "react-native";
 
-const Content = ({ data, titleText, title }) => {
-
-  const renderItem = ({ item, index }) => (
+const Content = ({ data, dataType, title }) => {
+  const renderDefinitionItem = ({ item, index }) => (
     <Text key={index} style={styles.textInfo}>
       <Text style={styles.textBold}>{index + 1}:</Text> {item.definition}
     </Text>
   );
 
-  console.log(data);
+  // console.log(data);
   return (
     <View style={styles.boxContainer}>
       <Text style={styles.titleContent}>{title}</Text>
       <View style={styles.contentTextContainer}>
-        <FlatList data={data} renderItem={renderItem} keyExtractor={(item, index) => index.toString()} />
+        {dataType === "definition" && <FlatList data={data} renderItem={renderDefinitionItem} keyExtractor={(Item, index) => index.toString()} />}
+        {dataType != "definition" && <Text> Hello it is time for bed</Text>}
       </View>
     </View>
   );
