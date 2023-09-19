@@ -3,7 +3,7 @@ import { View, Text, Alert, ScrollView } from "react-native";
 import { Searchbar } from "react-native-paper";
 import styles from "../Styles/WordFormStyle";
 import Content from "../components/Content";
-import Reset from "./Reset"
+import Reset from "./Reset";
 
 function WordForm() {
   const apiURL = process.env.EXPO_PUBLIC_API_URL;
@@ -28,7 +28,6 @@ function WordForm() {
     const definitionsURL = `${apiURL}/${searchQuery}/definitions`;
     const responseDefinitions = await fetch(definitionsURL, options);
     const resultDefinitions = await responseDefinitions.json();
-    console.log(resultDefinitions.definitions);
 
     if (resultDefinitions.message === "word not found" && !hideSearch) {
       console.log("ERROR x" + definitions);
@@ -76,7 +75,7 @@ function WordForm() {
   return (
     <View>
       {hideSearch && <Text style={styles.searchWord}>You searched {searchQuery} ... </Text>}
-      {hideSearch && <Reset />}
+      {hideSearch && <Reset setSearchQuery={setSearchQuery} setDefinitions={setDefinitions} />}
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.container}>
           <View style={styles.inputContainer}>
@@ -92,7 +91,6 @@ function WordForm() {
               />
             )}
           </View>
-          {hideSearch && <Content data={definitions} dataType={"definition"} title={"Definition(s)"} />}
           {hideSearch && <Content data={definitions} dataType={"definition"} title={"Definition(s)"} />}
         </View>
       </ScrollView>
