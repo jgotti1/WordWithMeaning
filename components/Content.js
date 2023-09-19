@@ -1,24 +1,19 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 
-const Content = () => {
+const Content = ({ data, titleText, title}) => {
+  console.log(data);
   return (
     <View style={styles.boxContainer}>
-      <Text style={styles.titleContent}>This is the title</Text>
+      <Text style={styles.titleContent}>{title}</Text>
       <View style={styles.contentTextContainer}>
-        <Text style={styles.textBold}>Description:</Text>
-        {/* <Text> The text is here </Text> */}
-        <Text style={styles.textInfo}> The text is here and here and here and here and here and here and here and here </Text>
-      </View>
-      <View style={styles.contentTextContainer}>
-        <Text style={styles.textBold}>Description:</Text>
-        {/* <Text> The text is here </Text> */}
-        <Text style={styles.textInfo}> The text is here and here and here and here and here and here and here and here </Text>
-      </View>
-      <View style={styles.contentTextContainer}>
-        <Text style={styles.textBold}>Description:</Text>
-        {/* <Text> The text is here </Text> */}
-        <Text style={styles.textInfo}> The text is here and here and here and here and here and here and here and here </Text>
+        {/* <Text style={styles.textBold}>{titleText}</Text> */}
+        {/* <Text style={styles.textInfo}> The text is here and here and here and here and here and here and here and here </Text> */}
+        {/* {data.map((data) => (
+          <Text key={index} style={styles.textInfo}>
+            {data}
+          </Text>
+        ))} */}
       </View>
     </View>
   );
@@ -40,7 +35,7 @@ const styles = StyleSheet.create({
   titleContent: {
     textAlign: "center",
     fontFamily: "Inter-Black",
-    fontSize: 14,
+    fontSize: 13,
     marginTop: 3,
   },
   contentTextContainer: {
@@ -49,12 +44,13 @@ const styles = StyleSheet.create({
   },
   textBold: {
     fontFamily: "Roboto-Bold",
+    marginRight: 15,
   },
 
   textInfo: {
     flexWrap: "wrap",
-    maxWidth: "80%",
-    marginLeft: 4
+    maxWidth: "98%",
+    marginLeft: 4,
   },
 });
 

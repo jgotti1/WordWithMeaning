@@ -26,12 +26,10 @@ export default function Main() {
             </TouchableOpacity>
           </View>
         </View>
-        {/* section end */}
         <View>
           <Text style={styles.title}>WORD SEARCH MANIA</Text>
         </View>
         <WordForm />
-        <Content/>
       </ImageBackground>
     </SafeAreaView>
   );
