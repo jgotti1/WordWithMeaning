@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     marginTop: 8,
-    fontSize: 18,
+    fontSize: 22,
     fontFamily: "RadicalFortuneDemoRegular-ZV1Jl",
     textShadowColor: "#d8d8e0",
     textShadowRadius: 3,

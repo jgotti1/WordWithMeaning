@@ -1,19 +1,20 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, FlatList } from "react-native";
 
-const Content = ({ data, titleText, title}) => {
+const Content = ({ data, titleText, title }) => {
+
+  const renderItem = ({ item, index }) => (
+    <Text key={index} style={styles.textInfo}>
+      <Text style={styles.textBold}>{index + 1}:</Text> {item.definition}
+    </Text>
+  );
+
   console.log(data);
   return (
     <View style={styles.boxContainer}>
       <Text style={styles.titleContent}>{title}</Text>
       <View style={styles.contentTextContainer}>
-        {/* <Text style={styles.textBold}>{titleText}</Text> */}
-        {/* <Text style={styles.textInfo}> The text is here and here and here and here and here and here and here and here </Text> */}
-        {/* {data.map((data) => (
-          <Text key={index} style={styles.textInfo}>
-            {data}
-          </Text>
-        ))} */}
+        <FlatList data={data} renderItem={renderItem} keyExtractor={(item, index) => index.toString()} />
       </View>
     </View>
   );
@@ -36,7 +37,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "Inter-Black",
     fontSize: 13,
-    marginTop: 3,
+    marginTop: 3.8,
+    marginBottom: 3,
   },
   contentTextContainer: {
     flexDirection: "row",
@@ -51,6 +53,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     maxWidth: "98%",
     marginLeft: 4,
+    marginBottom: 10,
   },
 });
 
