@@ -16,7 +16,7 @@ function WordForm() {
       "X-RapidAPI-Host": apiHOST,
     },
   };
-
+  const [prounciation, setProunciation] = useState([]);
   const [definitions, setDefinitions] = useState([]);
   const [hideSearch, setHideSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,37 +25,42 @@ function WordForm() {
   };
 
   const handleSubmit = async () => {
+
+    if (!searchQuery) {
+      Alert.alert("Please enter a word to search.");
+      return; // Exit the function early if searchQuery is undefined
+    }
+
+    // definition logic
     const definitionsURL = `${apiURL}/${searchQuery}/definitions`;
     const responseDefinitions = await fetch(definitionsURL, options);
     const resultDefinitions = await responseDefinitions.json();
 
+    // pronunciation logic
+    const pronunciationURL = `${apiURL}/${searchQuery}/pronunciation`;
+    const responsePronunciation = await fetch(pronunciationURL, options);
+    const resultPronunciation = await responsePronunciation.json();
+
     if (resultDefinitions.message === "word not found" && !hideSearch) {
       console.log("ERROR x" + definitions);
       setHideSearch(false);
-      Alert.alert(`The word searched ${searchQuery} does not exist, please try again`);
+      Alert.alert(`The word searched ${searchQuery} is not a valid word, please try again`);
       setSearchQuery("");
     } else {
       setDefinitions(resultDefinitions.definitions);
+      setProunciation(resultPronunciation.pronunciation.all);
       setHideSearch(true);
       console.log("hey");
     }
 
-    // const definitions = `${apiURL}/${searchQuery}/definitions`;
     const synonyms = `${apiURL}/${searchQuery}/synonyms`;
     const examples = `${apiURL}/${searchQuery}/examples`;
-    const pronunciation = `${apiURL}/${searchQuery}/pronunciation`;
 
-    // const responseDefinitions = await fetch(definitions, options);
     const responseSynonyms = await fetch(synonyms, options);
     const responseExamples = await fetch(examples, options);
-    const responsePronunciation = await fetch(pronunciation, options);
 
-    // const resultDefinitions = await responseDefinitions.json();
     const resultSynonyms = await responseSynonyms.json();
     const resultExamples = await responseExamples.json();
-    const resultPronunciation = await responsePronunciation.json();
-
-    // setDefinitions(resultDefinitions.definitions);
 
     // console.log("Prounciation " + resultPronunciation.pronunciation.all);
 
@@ -72,6 +77,7 @@ function WordForm() {
     // }
     // setSearchQuery("");
   };
+  // console.log(prounciation);
   return (
     <View>
       {hideSearch && <Text style={styles.searchWord}>You searched {searchQuery} ... </Text>}
