@@ -28,7 +28,6 @@ export default function Main() {
           <Text style={styles.title}>WORD SEARCH MANIA</Text>
         </View>
         <WordForm />
-        <Reset />
       </ImageBackground>
     </SafeAreaView>
   );

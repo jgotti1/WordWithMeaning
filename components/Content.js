@@ -8,14 +8,20 @@ const Content = ({ data, dataType, title }) => {
       <Text style={styles.textBold}>{index + 1}:</Text> {item.definition}
     </Text>
   );
-console.log("data" + data)
   
   return (
     <View>
       <View style={styles.boxContainer}>
         <Text style={styles.titleContent}>{title}</Text>
         <View style={styles.contentTextContainer}>
-          {dataType === "definition" && <FlatList data={data} renderItem={renderDefinitionItem} keyExtractor={(Item, index) => index.toString()} />}
+          {/* {dataType === "definition" && <FlatList data={data} renderItem={renderDefinitionItem} keyExtractor={(Item, index) => index.toString()} />} */}
+          {dataType === "definition" && (
+            <View>
+              {data.map((item, index) => (
+                <View key={index}>{renderDefinitionItem({ item, index })}</View>
+              ))}
+            </View>
+          )}
         </View>
       </View>
     </View>
@@ -25,10 +31,10 @@ console.log("data" + data)
 const styles = StyleSheet.create({
   boxContainer: {
     // flex: 1,
-    backgroundColor: "rgba(255, 255,255, 0.7)", // Slightly transparent background
+    backgroundColor: "rgba(255, 255,255, 0.7)",
     marginTop: 20,
-    margin: 20, // Add padding for better appearance
-    minHeight: 100, // Minimum height of 100px
+    margin: 20, 
+    minHeight: 100, 
     borderRadius: 3,
     borderColor: "white",
     borderWidth: 3,

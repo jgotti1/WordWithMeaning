@@ -3,6 +3,7 @@ import { View, Text, Alert, ScrollView } from "react-native";
 import { Searchbar } from "react-native-paper";
 import styles from "../Styles/WordFormStyle";
 import Content from "../components/Content";
+import Reset from "./Reset"
 
 function WordForm() {
   const apiURL = process.env.EXPO_PUBLIC_API_URL;
@@ -39,7 +40,7 @@ function WordForm() {
       setHideSearch(true);
       console.log("hey");
     }
-    console.log(definitions);
+
     // const definitions = `${apiURL}/${searchQuery}/definitions`;
     const synonyms = `${apiURL}/${searchQuery}/synonyms`;
     const examples = `${apiURL}/${searchQuery}/examples`;
@@ -73,26 +74,29 @@ function WordForm() {
     // setSearchQuery("");
   };
   return (
-    <ScrollView contentContainerStyle={styles.scrollViewContent}>
-    <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        {!hideSearch && (
-          <Searchbar
-            placeholder="Search"
-            onChangeText={onChangeSearch}
-            value={searchQuery}
-            onSubmitEditing={handleSubmit}
-            selectionColor={"blue"}
-            autoCorrect={false}
-            spellCheck={false}
-          />
-        )}
-        {hideSearch && <Text style={styles.searchWord}>You searched {searchQuery} ... </Text>}
-      </View>
-      {hideSearch && <Content data={definitions} dataType={"definition"} title={"Definition(s)"} />}
-      {hideSearch && <Content data={definitions} dataType={"definition"} title={"Definition(s)"} />}
+    <View>
+      {hideSearch && <Text style={styles.searchWord}>You searched {searchQuery} ... </Text>}
+      {hideSearch && <Reset />}
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+        <View style={styles.container}>
+          <View style={styles.inputContainer}>
+            {!hideSearch && (
+              <Searchbar
+                placeholder="Search"
+                onChangeText={onChangeSearch}
+                value={searchQuery}
+                onSubmitEditing={handleSubmit}
+                selectionColor={"blue"}
+                autoCorrect={false}
+                spellCheck={false}
+              />
+            )}
+          </View>
+          {hideSearch && <Content data={definitions} dataType={"definition"} title={"Definition(s)"} />}
+          {hideSearch && <Content data={definitions} dataType={"definition"} title={"Definition(s)"} />}
+        </View>
+      </ScrollView>
     </View>
-     </ScrollView>
   );
 }
 
