@@ -9,10 +9,10 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
   },
   title: {
-    marginTop: 12,
+    marginTop: 18,
     color: "white",
     textAlign: "center",
-    fontSize: 52,
+    fontSize: 36,
     fontFamily: "RadicalFortuneDemoRegular-ZV1Jl",
     textShadowColor: "#c1c1c4",
     textShadowRadius: 12,
@@ -42,6 +42,9 @@ const styles = StyleSheet.create({
     color: "white",
     marginLeft: 5,
   },
+  searchWord: {
+    fontSize: 32,
+  }
 });
 
 

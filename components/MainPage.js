@@ -4,6 +4,8 @@ import styles from "../Styles/main";
 import clouds from "../assets/images/clouds.jpeg";
 import Constants from "expo-constants";
 import WordForm from "./WordForm";
+import Contect from "../components/Content"
+import Content from "../components/Content";
 // import { useState, useEffect, useCallback } from "react";
 // import * as Font from "expo-font";
 // import * as SplashScreen from "expo-splash-screen";
@@ -26,9 +28,10 @@ export default function Main() {
         </View>
         {/* section end */}
         <View>
-          <Text style={styles.title}>WORD MANIA</Text>
+          <Text style={styles.title}>WORD SEARCH MANIA</Text>
         </View>
-        <WordForm/>
+        <WordForm />
+        <Content/>
       </ImageBackground>
     </SafeAreaView>
   );

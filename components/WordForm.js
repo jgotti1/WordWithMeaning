@@ -55,6 +55,7 @@ function WordForm() {
   return (
     <View style={styles.inputContainer}>
       <Searchbar placeholder="Search" onChangeText={onChangeSearch} value={searchQuery} onSubmitEditing={handleSubmit} selectionColor={"blue"} />
+      {searchQuery && <Text style={styles.searchWord}>{searchQuery}</Text>}
     </View>
   );
 }
