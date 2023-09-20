@@ -1,24 +1,24 @@
 import { View, StyleSheet, Text } from "react-native";
 
-
 const Content = ({ data, dataType, title }) => {
-  
- 
   const renderDefinitionItem = ({ item, index }) => (
     <Text key={index} style={styles.textInfo}>
-      <Text style={styles.textBold}>{index + 1}</Text>:  {item.definition}
+      <Text style={styles.textBold}>{index + 1}</Text>: {item.definition}
     </Text>
   );
 
   const renderSynonyms = ({ item, index }) => (
-    
-      <Text key={index} style={styles.textInfo}>
-        <Text style={styles.textBold}>{index + 1}:</Text>   {item}
-      </Text>
-    
+    <Text key={index} style={styles.textInfo}>
+      <Text style={styles.textBold}>{index + 1}:</Text> {item}
+    </Text>
   );
 
-
+    const renderExamples = ({ item, index }) => (
+      <Text key={index} style={styles.textInfo}>
+        <Text style={styles.textBold}>{index + 1}:</Text> {item}
+      </Text>
+    );
+  
   return (
     <View>
       <View style={styles.boxContainer}>
@@ -26,7 +26,7 @@ const Content = ({ data, dataType, title }) => {
         <View style={styles.contentTextContainer}>
           {/* definition */}
           {dataType === "definition" && (
-            <View>
+            <View style={styles.textExContainer}>
               {data.map((item, index) => (
                 <View key={index}>{renderDefinitionItem({ item, index })}</View>
               ))}
@@ -41,6 +41,14 @@ const Content = ({ data, dataType, title }) => {
           {/* Synonyms */}
           {dataType === "synonyms" && (
             <View style={styles.textSynContainer}>
+              {data.map((item, index) => (
+                <View key={index}>{renderSynonyms({ item, index })}</View>
+              ))}
+            </View>
+          )}
+          {/* Examples */}
+          {dataType === "examples" && (
+            <View style={styles.textExContainer}>
               {data.map((item, index) => (
                 <View key={index}>{renderSynonyms({ item, index })}</View>
               ))}
@@ -91,10 +99,13 @@ const styles = StyleSheet.create({
   textProContainer: {
     flex: 1,
   },
+  textExContainer: {
+    flex: 1,
+    marginTop: 15,
+  },
   textSynContainer: {
     flex: 1,
-
-    
+    marginTop: 15,
   },
   textPro: {
     fontSize: 36,

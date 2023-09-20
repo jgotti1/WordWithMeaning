@@ -16,6 +16,7 @@ function WordForm() {
       "X-RapidAPI-Host": apiHOST,
     },
   };
+  const [exampleData, setExampleData] = useState([]);
   const [prounciation, setProunciation] = useState([]);
   const [definitions, setDefinitions] = useState([]);
   const [synonymData, setSynonymData] = useState([]);
@@ -46,6 +47,11 @@ function WordForm() {
     const responseSynonyms = await fetch(synonymsURL, options);
     const resultSynonym = await responseSynonyms.json();
 
+    // usage examples
+    const examples = `${apiURL}/${searchQuery}/examples`;
+    const responseExamples = await fetch(examples, options);
+    const resultExamples = await responseExamples.json();
+
     if (resultDefinitions.message === "word not found" && !hideSearch) {
       console.log("ERROR x" + definitions);
       setHideSearch(false);
@@ -55,25 +61,13 @@ function WordForm() {
       setDefinitions(resultDefinitions.definitions);
       setProunciation(resultPronunciation.pronunciation.all);
       setSynonymData(resultSynonym);
+      setExampleData(resultExamples);
       setHideSearch(true);
       console.log("hey");
     }
-
-    const examples = `${apiURL}/${searchQuery}/examples`;
-
-    const responseExamples = await fetch(examples, options);
-
-    const resultExamples = await responseExamples.json();
-
-    // for (i = 0; i < resultSynonyms.synonyms.length; i++) {
-    //   console.log("Synonymon " + (i + 1) + " " + resultSynonyms.synonyms[i]);
-    // }
-
-    // for (i = 0; i < resultExamples.examples.length; i++) {
-    //   console.log("example " + (i + 1) + " " + resultExamples.examples[i]);
-    // }
+    
   };
-
+  console.log(exampleData);
   return (
     <View>
       {hideSearch && <Text style={styles.searchWord}>You searched {searchQuery} ... </Text>}
@@ -95,7 +89,8 @@ function WordForm() {
           </View>
           {hideSearch && prounciation && <Content data={prounciation} dataType={"prounciation"} title={"Prounciation"} />}
           {hideSearch && <Content data={definitions} dataType={"definition"} title={"Definition(s)"} />}
-          {hideSearch && synonymData && <Content data={synonymData.synonyms} dataType={"synonyms"} title={"Synonyms"} />}
+          {hideSearch && exampleData.examples.length > 0 && <Content data={exampleData.examples} dataType={"examples"} title={"Example Usage"} />}
+          {hideSearch && synonymData.synonyms.length > 0 && <Content data={synonymData.synonyms} dataType={"synonyms"} title={"Synonyms"} />}
         </View>
       </ScrollView>
     </View>

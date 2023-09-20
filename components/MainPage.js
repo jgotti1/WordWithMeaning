@@ -4,7 +4,7 @@ import styles from "../Styles/main";
 import clouds from "../assets/images/clouds.jpeg";
 import Constants from "expo-constants";
 import WordForm from "./WordForm";
-import Reset from "../components/Reset";
+
 
 
 export default function Main() {
@@ -23,7 +23,7 @@ export default function Main() {
           </View>
         </View>
         <View>
-          <Text style={styles.title}>WORD SEARCH MANIA</Text>
+          <Text style={styles.title}>ALL ABOUT WORDS</Text>
         </View>
         <WordForm />
         <View style={styles.centeredImageContainer}>

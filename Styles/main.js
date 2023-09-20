@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     width: 400,
     height: 400,
     resizeMode: "contain",
-    opacity: 0.55,
+    opacity: 0.42,
     borderRadius: 60,
     borderColor: "white",
     borderWidth: 2,
