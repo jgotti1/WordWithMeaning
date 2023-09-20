@@ -1,22 +1,48 @@
 import { View, StyleSheet, Text } from "react-native";
 
 
-const Content = ({ data, dataType, title}) => {
+const Content = ({ data, dataType, title }) => {
+  
+ 
   const renderDefinitionItem = ({ item, index }) => (
     <Text key={index} style={styles.textInfo}>
-      <Text style={styles.textBold}>{index + 1}:</Text> {item.definition}
+      <Text style={styles.textBold}>{index + 1}</Text>:  {item.definition}
     </Text>
   );
+
+  const renderSynonyms = ({ item, index }) => (
+    
+      <Text key={index} style={styles.textInfo}>
+        <Text style={styles.textBold}>{index + 1}:</Text>   {item}
+      </Text>
+    
+  );
+
 
   return (
     <View>
       <View style={styles.boxContainer}>
         <Text style={styles.titleContent}>{title}</Text>
         <View style={styles.contentTextContainer}>
-          {dataType === "definition" && dataType && (
+          {/* definition */}
+          {dataType === "definition" && (
             <View>
               {data.map((item, index) => (
                 <View key={index}>{renderDefinitionItem({ item, index })}</View>
+              ))}
+            </View>
+          )}
+          {/* pronunciation */}
+          {dataType === "prounciation" && (
+            <View style={styles.textProContainer}>
+              <Text style={styles.textPro}> {data}</Text>
+            </View>
+          )}
+          {/* Synonyms */}
+          {dataType === "synonyms" && (
+            <View style={styles.textSynContainer}>
+              {data.map((item, index) => (
+                <View key={index}>{renderSynonyms({ item, index })}</View>
               ))}
             </View>
           )}
@@ -28,13 +54,11 @@ const Content = ({ data, dataType, title}) => {
 
 const styles = StyleSheet.create({
   boxContainer: {
-    // flex: 1,
     backgroundColor: "rgba(255, 255,255, 0.7)",
     paddingBottom: 30,
-    // paddingRight: 5,
-    // paddingLeft: 5,
+
     marginBottom: 20,
-    minHeight: 100,
+    minHeight: 40,
     borderRadius: 3,
     borderColor: "white",
     borderWidth: 3,
@@ -45,7 +69,7 @@ const styles = StyleSheet.create({
   titleContent: {
     textAlign: "center",
     fontFamily: "Inter-Black",
-    fontSize: 13,
+    fontSize: 18,
     marginTop: 3.8,
     marginBottom: 3,
   },
@@ -62,8 +86,19 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     maxWidth: "98%",
     marginLeft: 4,
-    marginBottom: 10,
-    // paddingBottom: 40,
+    marginBottom: 14,
+  },
+  textProContainer: {
+    flex: 1,
+  },
+  textSynContainer: {
+    flex: 1,
+
+    
+  },
+  textPro: {
+    fontSize: 36,
+    textAlign: "center",
   },
 });
 

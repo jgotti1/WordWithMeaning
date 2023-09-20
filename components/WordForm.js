@@ -18,6 +18,7 @@ function WordForm() {
   };
   const [prounciation, setProunciation] = useState([]);
   const [definitions, setDefinitions] = useState([]);
+  const [synonymData, setSynonymData] = useState([]);
   const [hideSearch, setHideSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const onChangeSearch = (query) => {
@@ -25,7 +26,6 @@ function WordForm() {
   };
 
   const handleSubmit = async () => {
-
     if (!searchQuery) {
       Alert.alert("Please enter a word to search.");
       return; // Exit the function early if searchQuery is undefined
@@ -41,6 +41,11 @@ function WordForm() {
     const responsePronunciation = await fetch(pronunciationURL, options);
     const resultPronunciation = await responsePronunciation.json();
 
+    // synonymslogic
+    const synonymsURL = `${apiURL}/${searchQuery}/synonyms`;
+    const responseSynonyms = await fetch(synonymsURL, options);
+    const resultSynonym = await responseSynonyms.json();
+
     if (resultDefinitions.message === "word not found" && !hideSearch) {
       console.log("ERROR x" + definitions);
       setHideSearch(false);
@@ -49,24 +54,16 @@ function WordForm() {
     } else {
       setDefinitions(resultDefinitions.definitions);
       setProunciation(resultPronunciation.pronunciation.all);
+      setSynonymData(resultSynonym);
       setHideSearch(true);
       console.log("hey");
     }
 
-    const synonyms = `${apiURL}/${searchQuery}/synonyms`;
     const examples = `${apiURL}/${searchQuery}/examples`;
 
-    const responseSynonyms = await fetch(synonyms, options);
     const responseExamples = await fetch(examples, options);
 
-    const resultSynonyms = await responseSynonyms.json();
     const resultExamples = await responseExamples.json();
-
-    // console.log("Prounciation " + resultPronunciation.pronunciation.all);
-
-    // for (i = 0; i < resultDefinitions.definitions.length; i++) {
-    //   console.log("Definetion " + (i + 1) + " " + resultDefinitions.definitions[i].definition);
-    // }
 
     // for (i = 0; i < resultSynonyms.synonyms.length; i++) {
     //   console.log("Synonymon " + (i + 1) + " " + resultSynonyms.synonyms[i]);
@@ -75,9 +72,8 @@ function WordForm() {
     // for (i = 0; i < resultExamples.examples.length; i++) {
     //   console.log("example " + (i + 1) + " " + resultExamples.examples[i]);
     // }
-    // setSearchQuery("");
   };
-  // console.log(prounciation);
+
   return (
     <View>
       {hideSearch && <Text style={styles.searchWord}>You searched {searchQuery} ... </Text>}
@@ -97,7 +93,9 @@ function WordForm() {
               />
             )}
           </View>
+          {hideSearch && prounciation && <Content data={prounciation} dataType={"prounciation"} title={"Prounciation"} />}
           {hideSearch && <Content data={definitions} dataType={"definition"} title={"Definition(s)"} />}
+          {hideSearch && synonymData && <Content data={synonymData.synonyms} dataType={"synonyms"} title={"Synonyms"} />}
         </View>
       </ScrollView>
     </View>

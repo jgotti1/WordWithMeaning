@@ -3,8 +3,6 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
- 
-    
   },
   image: {
     flex: 1,
@@ -47,7 +45,23 @@ const styles = StyleSheet.create({
   },
   searchWord: {
     fontSize: 32,
-  }
+  },
+  centeredImageContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 80,
+  },
+
+  centeredImage: {
+    width: 400,
+    height: 400,
+    resizeMode: "contain",
+    opacity: 0.55,
+    borderRadius: 60,
+    borderColor: "white",
+    borderWidth: 2,
+    
+  },
 });
 
 
