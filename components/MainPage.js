@@ -4,6 +4,7 @@ import styles from "../Styles/main";
 import clouds from "../assets/images/clouds.jpeg";
 import Constants from "expo-constants";
 import WordForm from "./WordForm";
+import CenterImage from "../components/CenterImage"
 
 
 
@@ -23,15 +24,17 @@ export default function Main() {
           </View>
         </View>
         <View>
-          <Text style={styles.title}>ALL ABOUT WORDS</Text>
+          <Text style={styles.title}>WORD UP !</Text>
         </View>
         <WordForm />
-        <View style={styles.centeredImageContainer}>
-          <Image
+        <CenterImage/>
+        {/* <View style={styles.centeredImageContainer}> */}
+          {/* <Image
             source={require("../assets/images/whats.png")}
             style={styles.centeredImage}
-          />
-        </View>
+          /> */}
+          
+        {/* </View> */}
       </ImageBackground>
     </SafeAreaView>
   );

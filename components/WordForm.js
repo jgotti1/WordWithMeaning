@@ -63,11 +63,11 @@ function WordForm() {
       setSynonymData(resultSynonym);
       setExampleData(resultExamples);
       setHideSearch(true);
-      console.log("hey");
+      
     }
     
   };
-  console.log(exampleData);
+  
   return (
     <View>
       {hideSearch && <Text style={styles.searchWord}>You searched {searchQuery} ... </Text>}

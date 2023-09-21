@@ -9,14 +9,14 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
   },
   title: {
-    marginTop: 18,
+    marginTop: 13,
     color: "white",
     textAlign: "center",
-    fontSize: 36,
+    fontSize: 58,
     fontFamily: "RadicalFortuneDemoRegular-ZV1Jl",
-    lineHeight: 38,
+    letterSpacing: 10,
     textShadowColor: "#c1c1c4",
-    textShadowRadius: 12,
+    textShadowRadius: 13,
   },
   copyright: {
     flexDirection: "row",
@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     borderColor: "white",
     borderWidth: 2,
-    
   },
 });
 
