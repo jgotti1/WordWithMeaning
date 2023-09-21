@@ -9,11 +9,11 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
   },
   title: {
-    marginTop: 13,
+    marginTop: 18,
     color: "white",
     textAlign: "center",
-    fontSize: 58,
-    fontFamily: "RadicalFortuneDemoRegular-ZV1Jl",
+    fontSize: 48,
+    fontFamily: "LuckiestGuy",
     letterSpacing: 10,
     textShadowColor: "#c1c1c4",
     textShadowRadius: 13,
@@ -22,10 +22,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     color: "white",
+    marginRight: 5,
   },
   versionText: {
     fontSize: 10,
     color: "white",
+    marginLeft: 5,
   },
   versionText: {
     fontSize: 10,
@@ -46,11 +48,7 @@ const styles = StyleSheet.create({
   searchWord: {
     fontSize: 32,
   },
-  centeredImageContainer: {
-    // alignItems: "center",
-    // justifyContent: "center",
-    // marginTop: 80,
-  },
+
 });
 
 export default styles;

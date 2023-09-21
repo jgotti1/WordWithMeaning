@@ -18,6 +18,8 @@ export default function App() {
           "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
           "Inter-Black": require("./assets/fonts/Inter-Black.otf"),
           "RadicalFortuneDemoRegular-ZV1Jl": require("./assets/fonts/RadicalFortuneDemoRegular-ZV1Jl.otf"),
+          "LilitaOne": require("./assets/fonts/LilitaOne-Regular.ttf"),
+          "LuckiestGuy": require("./assets/fonts/LuckiestGuy-Regular.ttf"),
         });
       } catch (e) {
         console.warn(e);

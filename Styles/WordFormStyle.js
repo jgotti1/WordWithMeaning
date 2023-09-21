@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   inputContainer: {
-    marginTop: 15,
+    marginTop: 8,
     marginLeft: 55,
     marginRight: 55,
     marginBottom: 20,
