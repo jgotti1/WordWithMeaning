@@ -13,7 +13,7 @@ const CenterImage= () => {
     });
 
     const fadeOutAnimation = Animated.timing(fadeAnim, {
-      toValue: 0.5,
+      toValue: 0.43,
       duration: 1500, // Adjust the duration as needed
       easing: Easing.linear,
       useNativeDriver: true, // Add this line for better performance
