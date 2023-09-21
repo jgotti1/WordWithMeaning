@@ -89,7 +89,9 @@ function WordForm() {
           {hideSearch && <Content data={definitions} dataType={"definition"} title={"Definition(s)"} setDefinitions={setDefinitions} />}
           {hideSearch && exampleData.examples.length > 0 && <Content data={exampleData.examples} dataType={"examples"} title={"Example Usage"} />}
           {hideSearch && synonymData.synonyms.length > 0 && <Content data={synonymData.synonyms} dataType={"synonyms"} title={"Synonyms"} />}
-        </View>
+          {hideSearch && <View style={styles.bottom}></View>}
+    </View>
+    
       </ScrollView>
     </View>
   );

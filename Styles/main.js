@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
   },
   title: {
-    marginTop: 18,
+    marginTop: 38,
     color: "white",
     textAlign: "center",
     fontSize: 48,

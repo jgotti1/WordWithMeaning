@@ -25,6 +25,9 @@ const styles = StyleSheet.create({
   scrollViewContent: {
     flexGrow: 1, 
   },
+  bottom: {
+    height: 400,
+  }
 });
 
 export default styles;

@@ -11,7 +11,7 @@ export default function Main() {
   return (
     <ImageBackground source={clouds} style={styles.image}>
       <SafeAreaView style={styles.container}>
-        <StatusBar style="auto" />
+        <StatusBar style="light" />
         {/* Version and copright link     */}
         <View style={styles.topLineContainer}>
           <Text style={styles.versionText}>{version}</Text>
