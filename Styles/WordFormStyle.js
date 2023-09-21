@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   scrollViewContent: {
-    flexGrow: 1,
+    flexGrow: 1, 
   },
 });
 

@@ -1,0 +1,26 @@
+{
+  "cli": {
+    "version": ">= 5.2.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://wordsapiv1.p.rapidapi.com/words",
+        "EXPO_PUBLIC_API_KEY": "51a73ce2ccmshf14d3d4233f4ae8p123462jsn5d553cf71789",
+        "EXPO_PUBLIC_API_HOST": "wordsapiv1.p.rapidapi.com"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+     
+    }
+  }
+}

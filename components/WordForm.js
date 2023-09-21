@@ -63,15 +63,13 @@ function WordForm() {
       setSynonymData(resultSynonym);
       setExampleData(resultExamples);
       setHideSearch(true);
-      
     }
-    
   };
-  
+
   return (
     <View>
       {hideSearch && <Text style={styles.searchWord}>You searched {searchQuery} ... </Text>}
-      {hideSearch && <Reset setSearchQuery={setSearchQuery} setDefinitions={setDefinitions} />}
+      {hideSearch && <Reset setHideSearch={setHideSearch} setSearchQuery={setSearchQuery} />}
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.container}>
           <View style={styles.inputContainer}>
@@ -88,7 +86,7 @@ function WordForm() {
             )}
           </View>
           {hideSearch && prounciation && <Content data={prounciation} dataType={"prounciation"} title={"Prounciation"} />}
-          {hideSearch && <Content data={definitions} dataType={"definition"} title={"Definition(s)"} />}
+          {hideSearch && <Content data={definitions} dataType={"definition"} title={"Definition(s)"} setDefinitions={setDefinitions} />}
           {hideSearch && exampleData.examples.length > 0 && <Content data={exampleData.examples} dataType={"examples"} title={"Example Usage"} />}
           {hideSearch && synonymData.synonyms.length > 0 && <Content data={synonymData.synonyms} dataType={"synonyms"} title={"Synonyms"} />}
         </View>

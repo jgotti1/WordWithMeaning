@@ -47,21 +47,10 @@ const styles = StyleSheet.create({
     fontSize: 32,
   },
   centeredImageContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 80,
-  },
-
-  centeredImage: {
-    width: 400,
-    height: 400,
-    resizeMode: "contain",
-    opacity: 0.42,
-    borderRadius: 60,
-    borderColor: "white",
-    borderWidth: 2,
+    // alignItems: "center",
+    // justifyContent: "center",
+    // marginTop: 80,
   },
 });
-
 
 export default styles;

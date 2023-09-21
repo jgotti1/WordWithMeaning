@@ -2,19 +2,22 @@
   "expo": {
     "name": "word-play-api",
     "slug": "word-play-api",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "buildNumber": "1.0.0",
-      "supportsTablet": true
+      "buildNumber": "1.0.2",
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jgotti711.wordplayapi"
     },
     "android": {
       "adaptiveIcon": {
@@ -24,6 +27,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0a079adc-bb02-4137-8898-f3143bae9723"
+      }
     }
   }
 }

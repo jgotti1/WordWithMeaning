@@ -4,16 +4,14 @@ import styles from "../Styles/main";
 import clouds from "../assets/images/clouds.jpeg";
 import Constants from "expo-constants";
 import WordForm from "./WordForm";
-import CenterImage from "../components/CenterImage"
-
-
+import CenterImage from "../components/CenterImage";
 
 export default function Main() {
   const version = Constants.expoConfig.version;
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style="auto" />
-      <ImageBackground source={clouds} style={styles.image}>
+    <ImageBackground source={clouds} style={styles.image}>
+      <SafeAreaView style={styles.container}>
+        <StatusBar style="auto" />
         {/* Version and copright link     */}
         <View style={styles.topLineContainer}>
           <Text style={styles.versionText}>{version}</Text>
@@ -27,15 +25,8 @@ export default function Main() {
           <Text style={styles.title}>WORD UP !</Text>
         </View>
         <WordForm />
-        <CenterImage/>
-        {/* <View style={styles.centeredImageContainer}> */}
-          {/* <Image
-            source={require("../assets/images/whats.png")}
-            style={styles.centeredImage}
-          /> */}
-          
-        {/* </View> */}
-      </ImageBackground>
-    </SafeAreaView>
+        <CenterImage />
+      </SafeAreaView>
+    </ImageBackground>
   );
 }

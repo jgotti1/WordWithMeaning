@@ -1,35 +1,30 @@
 import { View, StyleSheet, Text } from "react-native";
 
 const Content = ({ data, dataType, title }) => {
-  // const renderDefinitionItem = ({ item, index }) => (
-  //   <Text key={index} style={styles.textInfo}>
-  //     <Text style={styles.textBold}>{index + 1}</Text>: {item.definition} - {item.partOfSpeech}
-  //   </Text>
-  // );
-const renderDefinitionItem = ({ item, index }) => (
-  <Text key={index} style={styles.textInfo}>
-    <Text style={styles.textBold}>{index + 1}</Text>: {item.definition} - <Text style={styles.textItalic}>{item.partOfSpeech}</Text>
-  </Text>
-);
+  const renderDefinitionItem = ({ item, index }) => (
+    <Text key={index} style={styles.textInfo}>
+      <Text style={styles.textBold}>{index + 1}</Text>: {item.definition} - <Text style={styles.textItalic}>{item.partOfSpeech}</Text>
+    </Text>
+  );
   const renderSynonyms = ({ item, index }) => (
     <Text key={index} style={styles.textInfo}>
       <Text style={styles.textBold}>{index + 1}:</Text> {item}
     </Text>
   );
 
-    const renderExamples = ({ item, index }) => (
-      <Text key={index} style={styles.textInfo}>
-        <Text style={styles.textBold}>{index + 1}:</Text> {item}
-      </Text>
-    );
-  
+  const renderExamples = ({ item, index }) => (
+    <Text key={index} style={styles.textInfo}>
+      <Text style={styles.textBold}>{index + 1}:</Text> {item}
+    </Text>
+  );
+
   return (
     <View>
       <View style={styles.boxContainer}>
         <Text style={styles.titleContent}>{title}</Text>
         <View style={styles.contentTextContainer}>
           {/* definition */}
-          {console.log(data.partOfSpeech)}
+
           {dataType === "definition" && (
             <View style={styles.textExContainer}>
               {data.map((item, index) => (
@@ -55,7 +50,7 @@ const renderDefinitionItem = ({ item, index }) => (
           {dataType === "examples" && (
             <View style={styles.textExContainer}>
               {data.map((item, index) => (
-                <View key={index}>{renderSynonyms({ item, index })}</View>
+                <View key={index}>{renderExamples({ item, index })}</View>
               ))}
             </View>
           )}

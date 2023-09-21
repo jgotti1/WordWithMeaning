@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { TouchableOpacity, Text, StyleSheet, View } from "react-native";
 import { NativeModules } from "react-native";
 
-const Reset = () => {
+const Reset = ({setHideSearch, setSearchQuery }) => {
   const [isPressed, setIsPressed] = useState(false);
 
   const handlePress = () => {
     setIsPressed(true);
-    NativeModules.DevSettings.reload();
+    setHideSearch(false);
+    setSearchQuery('')
   };
 
   return (

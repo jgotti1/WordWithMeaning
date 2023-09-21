@@ -38,6 +38,7 @@ const CenterImage= () => {
           borderRadius: 60,
           borderColor: "white",
           borderWidth: 2,
+          
         }}
       />
     </View>
