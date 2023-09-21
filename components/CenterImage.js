@@ -31,8 +31,8 @@ const CenterImage= () => {
       <Animated.Image
         source={require("../assets/images/whats.png")}
         style={{
-          width: 400,
-          height: 400,
+          width: 330,
+          height: 330,
           resizeMode: "contain",
           opacity: fadeAnim, // Apply the opacity from the Animated.Value
           borderRadius: 60,
