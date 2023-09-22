@@ -17,6 +17,7 @@ function WordForm() {
     },
   };
   const [exampleData, setExampleData] = useState([]);
+  const [rhymesData, setRhymesData] = useState([]);
   const [prounciation, setProunciation] = useState([]);
   const [definitions, setDefinitions] = useState([]);
   const [synonymData, setSynonymData] = useState([]);
@@ -50,17 +51,21 @@ function WordForm() {
     const resultSynonym = await responseSynonyms.json();
 
     // usage examples
-    const examples = `${apiURL}/${searchQuery}/examples`;
-    const responseExamples = await fetch(examples, options);
+    const examplesURL = `${apiURL}/${searchQuery}/examples`;
+    const responseExamples = await fetch(examplesURL, options);
     const resultExamples = await responseExamples.json();
 
     // syllables
-    const syllables = `${apiURL}/${searchQuery}/syllables`;
-    const responseSyllables = await fetch(syllables, options);
+    const syllablesURL = `${apiURL}/${searchQuery}/syllables`;
+    const responseSyllables = await fetch(syllablesURL, options);
     const resultSyllables = await responseSyllables.json();
 
+    // syllables
+    const rhymesURL = `${apiURL}/${searchQuery}/rhymes`;
+    const responseRhymes = await fetch(rhymesURL, options);
+    const resultRhymes = await responseRhymes.json();
+
     if (resultDefinitions.message === "word not found" && !hideSearch) {
-      console.log("ERROR x" + definitions);
       setHideSearch(false);
       Alert.alert(`The word searched ${searchQuery} is not a valid word, please try again`);
       setSearchQuery("");
@@ -69,11 +74,14 @@ function WordForm() {
       setProunciation(resultPronunciation.pronunciation.all);
       setSynonymData(resultSynonym);
       setSyllablesData(resultSyllables.syllables.count);
+      setRhymesData(resultRhymes.rhymes.all);
       setExampleData(resultExamples);
       setHideSearch(true);
     }
   };
-console.log(syllablesData);
+  console.log(rhymesData)
+  console.log(typeof rhymesData)
+  console.log(typeof definitions)
   return (
     <View>
       {hideSearch && <Text style={styles.searchWord}>You searched {searchQuery} ... </Text>}
@@ -97,6 +105,7 @@ console.log(syllablesData);
           {hideSearch && <Content data={definitions} dataType={"definition"} title={"Definition(s)"} setDefinitions={setDefinitions} />}
           {hideSearch && exampleData.examples.length > 0 && <Content data={exampleData.examples} dataType={"examples"} title={"Example Usage"} />}
           {hideSearch && synonymData.synonyms.length > 0 && <Content data={synonymData.synonyms} dataType={"synonyms"} title={"Synonyms"} />}
+          {hideSearch && rhymesData.length > 0 && <Content data={rhymesData} dataType={"rhymes"} title={"Rhymes With"} />}
           {hideSearch && <View style={styles.bottom}></View>}
         </View>
       </ScrollView>

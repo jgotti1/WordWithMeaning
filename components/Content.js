@@ -1,10 +1,15 @@
 import { View, StyleSheet, Text } from "react-native";
 
 const Content = ({ data, dataType, title, syllable }) => {
-  console.log(typeof syllable)
+
   const renderDefinitionItem = ({ item, index }) => (
     <Text key={index} style={styles.textInfo}>
       <Text style={styles.textBold}>{index + 1}</Text>: {item.definition} - <Text style={styles.textItalic}>{item.partOfSpeech}</Text>
+    </Text>
+  );
+  const renderRhymesItem = ({ item, index }) => (
+    <Text key={index} style={styles.textInfo}>
+      <Text style={styles.textBold}>{index + 1}</Text>: {item}
     </Text>
   );
   const renderSynonyms = ({ item, index }) => (
@@ -58,6 +63,13 @@ const Content = ({ data, dataType, title, syllable }) => {
             <View style={styles.textExContainer}>
               {data.map((item, index) => (
                 <View key={index}>{renderExamples({ item, index })}</View>
+              ))}
+            </View>
+          )}
+          {dataType === "rhymes" && (
+            <View style={styles.textExContainer}>
+              {data.map((item, index) => (
+                <View key={index}>{renderRhymesItem({ item, index })}</View>
               ))}
             </View>
           )}
