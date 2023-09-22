@@ -1,6 +1,7 @@
 import { View, StyleSheet, Text } from "react-native";
 
-const Content = ({ data, dataType, title }) => {
+const Content = ({ data, dataType, title, syllable }) => {
+  console.log(typeof syllable)
   const renderDefinitionItem = ({ item, index }) => (
     <Text key={index} style={styles.textInfo}>
       <Text style={styles.textBold}>{index + 1}</Text>: {item.definition} - <Text style={styles.textItalic}>{item.partOfSpeech}</Text>
@@ -11,12 +12,13 @@ const Content = ({ data, dataType, title }) => {
       <Text style={styles.textBold}>{index + 1}:</Text> {item}
     </Text>
   );
-
+  
   const renderExamples = ({ item, index }) => (
     <Text key={index} style={styles.textInfo}>
       <Text style={styles.textBold}>{index + 1}:</Text> {item}
     </Text>
   );
+// console.log(syllable)
 
   return (
     <View>
@@ -35,7 +37,12 @@ const Content = ({ data, dataType, title }) => {
           {/* pronunciation */}
           {dataType === "prounciation" && (
             <View style={styles.textProContainer}>
-              <Text style={styles.textPro}> {data}</Text>
+              <Text style={styles.textPro}>{data}</Text>
+              <View style={styles.sylcontainer}>
+                <Text style={styles.syllable}>
+                  Contains <Text style={styles.syllableNumber}>{syllable}</Text> Syllable(s)
+                </Text>
+              </View>
             </View>
           )}
           {/* Synonyms */}
@@ -114,6 +121,20 @@ const styles = StyleSheet.create({
   textItalic: {
     fontStyle: "italic",
     fontWeight: "bold",
+  },
+  sylcontainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 15,
+  },
+  syllable: {
+    fontWeight: "bold",
+  },
+  syllableNumber: {
+    fontFamily: "Roboto-Bold",
+    fontSize: 16,
+
   },
 });
 

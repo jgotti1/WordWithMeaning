@@ -22,6 +22,8 @@ function WordForm() {
   const [synonymData, setSynonymData] = useState([]);
   const [hideSearch, setHideSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [syllablesData, setSyllablesData] = useState("");
+
   const onChangeSearch = (query) => {
     setSearchQuery(query);
   };
@@ -52,6 +54,11 @@ function WordForm() {
     const responseExamples = await fetch(examples, options);
     const resultExamples = await responseExamples.json();
 
+    // syllables
+    const syllables = `${apiURL}/${searchQuery}/syllables`;
+    const responseSyllables = await fetch(syllables, options);
+    const resultSyllables = await responseSyllables.json();
+
     if (resultDefinitions.message === "word not found" && !hideSearch) {
       console.log("ERROR x" + definitions);
       setHideSearch(false);
@@ -61,11 +68,12 @@ function WordForm() {
       setDefinitions(resultDefinitions.definitions);
       setProunciation(resultPronunciation.pronunciation.all);
       setSynonymData(resultSynonym);
+      setSyllablesData(resultSyllables.syllables.count);
       setExampleData(resultExamples);
       setHideSearch(true);
     }
   };
-
+console.log(syllablesData);
   return (
     <View>
       {hideSearch && <Text style={styles.searchWord}>You searched {searchQuery} ... </Text>}
@@ -85,13 +93,12 @@ function WordForm() {
               />
             )}
           </View>
-          {hideSearch && prounciation && <Content data={prounciation} dataType={"prounciation"} title={"Prounciation"} />}
+          {hideSearch && prounciation && <Content data={prounciation} dataType={"prounciation"} title={"Prounciation"} syllable={syllablesData} />}
           {hideSearch && <Content data={definitions} dataType={"definition"} title={"Definition(s)"} setDefinitions={setDefinitions} />}
           {hideSearch && exampleData.examples.length > 0 && <Content data={exampleData.examples} dataType={"examples"} title={"Example Usage"} />}
           {hideSearch && synonymData.synonyms.length > 0 && <Content data={synonymData.synonyms} dataType={"synonyms"} title={"Synonyms"} />}
           {hideSearch && <View style={styles.bottom}></View>}
-    </View>
-    
+        </View>
       </ScrollView>
     </View>
   );
