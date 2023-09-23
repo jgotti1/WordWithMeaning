@@ -24,7 +24,8 @@ function WordForm() {
   const [hideSearch, setHideSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [syllablesData, setSyllablesData] = useState("");
-
+  
+  console.log(rhymesData)
   const onChangeSearch = (query) => {
     setSearchQuery(query);
   };
@@ -105,7 +106,7 @@ function WordForm() {
           {hideSearch && <Content data={definitions} dataType={"definition"} title={"Definition(s)"} setDefinitions={setDefinitions} />}
           {hideSearch && exampleData.examples.length > 0 && <Content data={exampleData.examples} dataType={"examples"} title={"Example Usage"} />}
           {hideSearch && synonymData.synonyms.length > 0 && <Content data={synonymData.synonyms} dataType={"synonyms"} title={"Synonyms"} />}
-          {hideSearch && rhymesData.length > 0 && <Content data={rhymesData} dataType={"rhymes"} title={"Rhymes With"} />}
+          {hideSearch && typeof rhymesData != "undefined" && <Content data={rhymesData} dataType={"rhymes"} title={"Rhymes With"} />}
           {hideSearch && <View style={styles.bottom}></View>}
         </View>
       </ScrollView>
