@@ -24,8 +24,7 @@ function WordForm() {
   const [hideSearch, setHideSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [syllablesData, setSyllablesData] = useState("");
-  
-  console.log(rhymesData)
+
   const onChangeSearch = (query) => {
     setSearchQuery(query);
   };
@@ -80,7 +79,7 @@ function WordForm() {
       setHideSearch(true);
     }
   };
-  
+
   return (
     <View>
       {hideSearch && <Text style={styles.searchWord}>You searched {searchQuery} ... </Text>}
