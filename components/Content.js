@@ -23,7 +23,7 @@ const Content = ({ data, dataType, title, syllable }) => {
       <Text style={styles.textBold}>{index + 1}:</Text> {item}
     </Text>
   );
-// console.log(syllable)
+
 
   return (
     <View>

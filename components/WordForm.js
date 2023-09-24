@@ -80,9 +80,7 @@ function WordForm() {
       setHideSearch(true);
     }
   };
-  console.log(rhymesData)
-  console.log(typeof rhymesData)
-  console.log(typeof definitions)
+  
   return (
     <View>
       {hideSearch && <Text style={styles.searchWord}>You searched {searchQuery} ... </Text>}
